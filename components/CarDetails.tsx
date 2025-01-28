@@ -3,13 +3,13 @@ import React from 'react'
 import { Fragment } from 'react'
 import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
-import { CarProps } from '@/types'
+import { CarParts } from '@/types'
 import { generateCarImageUrl } from '@/utils';
 
 interface CarDetailsProps{
     isOpen: boolean;
   closeModel: () => void;
-    car: CarProps
+    car: CarParts
 }
 
 const CarDetails = ({ isOpen, closeModel, car }: CarDetailsProps) => {

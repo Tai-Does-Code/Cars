@@ -2,22 +2,35 @@
 
 import {useState} from 'react'
 import Image from 'next/image';
-import { CarProps } from '@/types';
+import { CarParts } from '@/types';
 import { CustomButton } from '.';
 import { calculateCarRent } from '@/utils';
 import { CarDetails } from '.';
 import { generateCarImageUrl } from '@/utils';
 
 interface CarCardProps{
-    car: CarProps;
+    car: CarParts;
 }
 
 const CarCard = ({car}: CarCardProps ) => {
     // Destructure the car parts info 
-    const { city_mpg, year, make, model, transmission, drive } = car;
+    const { id,
+        make,
+        model,
+        year,
+        color,
+        mileage,
+        price,
+        fuelType,
+        transmission,
+        engine,
+        horsepower,
+        features,
+        owners,
+        image,} = car;
     const [isOpen, setIsOpen] = useState(false)
 
-    const carRent = calculateCarRent(city_mpg, year)
+    const carRent = calculateCarRent(mileage, year)
 
   return (
     <div className='car-card group'>
@@ -51,13 +64,13 @@ const CarCard = ({car}: CarCardProps ) => {
                 <div className='flex flex-col justify-center items-center gap-2'>
                     <Image src='/tire.svg' width={20} height={20} alt='tire' />
                     <p className='text-[14px] leading-[17px]'>
-                        { drive.toUpperCase() }
+                        { model.toUpperCase() }
                     </p>
                 </div>
                 <div className='flex flex-col justify-center items-center gap-2'>
                     <Image src='/gas.svg' width={20} height={20} alt='gas' />
                     <p className='text-[14px] leading-[17px]'>
-                        { city_mpg } MPG
+                        { mileage } MPG
                     </p>
                 </div>
             </div>

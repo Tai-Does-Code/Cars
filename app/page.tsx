@@ -1,79 +1,87 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { Hero, CustomFilter, CarCard, SearchBar, ShowMore } from "@/components";
-import Image from "next/image";
-// import SearchBar from "@/components/SearchBar";
-// import CustomFilter from "@/components/CustomFilter";
 import { fetchCars } from "@/utils";
-import { HomeProps } from "@/types";
-import { updateSearchParams } from "@/utils";
 import { fuels, yearsOfProduction } from "@/constants";
-// import CarCard from "@/components/CarCard";
-// import { SearchParams } from "next/dist/server/request/search-params";
 
-export default async function Home( { searchParams }: HomeProps ) {
+// This component no longer expects `searchParams` and will handle fetching cars client-side.
+export default function Home() {
+  const [cars, setCars] = useState([]); // Cars data state
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [error, setError] = useState<string | null>(null); // Error state
 
-  // Testing out the api call to fetch cars
-  const allCars = await fetchCars({
-    manufacturer: searchParams.manufacturer || "",
-    year: searchParams.year || 2022,
-    fuel: searchParams.fuel || "",
-    limit: searchParams.limit || 10,
-    model: searchParams.model || "",
-  });
-  // console.log(allCars);
+  // Fetch cars when the component mounts
+  useEffect(() => {
+    const getCars = async () => {
+      try {
+        const data = await fetchCars(); // Fetch car data from the API
+        setCars(data || []); // Update state with the fetched cars
+        setIsLoading(false); // Set loading to false once data is fetched
+      } catch (err) {
+        setError("Failed to fetch car data.");
+        setIsLoading(false);
+      }
+    };
 
-  // see if cars is empty
-  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+    getCars(); // Call the fetch function
+  }, []); // Empty dependency array to run only once on mount
+
+  // Show a loading spinner or error message while fetching
+  if (isLoading) {
+    return (
+      <main className="overflow-hidden">
+        <Hero />
+        <div className="mt-12 padding-x padding-y max-width text-center">
+          <h1 className="text-4xl font-extrabold">Loading Cars...</h1>
+        </div>
+      </main>
+    );
+  }
+
+  // Handle no cars found or error
+  if (error || cars.length === 0) {
+    return (
+      <main className="overflow-hidden">
+        <Hero />
+        <div className="mt-12 padding-x padding-y max-width text-center">
+          <h1 className="text-4xl font-extrabold">No Cars Found!</h1>
+          <p>{error || "Try refreshing the page or check the API."}</p>
+        </div>
+      </main>
+    );
+  }
 
   return (
-  <main className="overflow-hidden">
-    <Hero />
+    <main className="overflow-hidden">
+      <Hero />
 
-    <div className="mt-12 padding-x padding-y max-width" id="discover">
-      <div className="home__text-container">
-        <h1 className="text-4xl font-extrabold">
-          Car Catalogue
-        </h1>
-        <p>
-          Search for a car here!
-        </p>
-      </div>
-
-      <div className="home__filters">
-        <SearchBar />
-
-        <div className="home__filter-container">
-          <CustomFilter title="fuel" options={fuels} />
-          <CustomFilter title="year" options={yearsOfProduction} />
-
+      <div className="mt-12 padding-x padding-y max-width" id="discover">
+        <div className="home__text-container">
+          <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
+          <p>Search for a car here!</p>
         </div>
-      </div>
 
-      {!isDataEmpty ? (
+        <div className="home__filters">
+          <SearchBar />
+          <div className="home__filter-container">
+            <CustomFilter title="fuel" options={fuels} />
+            <CustomFilter title="year" options={yearsOfProduction} />
+          </div>
+        </div>
+
+        {/* Render the cars if available */}
         <section>
           <div className="home__cars-wrapper">
-            {allCars?.map((car) => (<CarCard car={car} />))}
+            {cars.map((car) => (
+              <CarCard key={car.id} car={car} /> // Use unique `key` for each car
+            ))}
           </div>
 
-          <ShowMore
-          pageNumber={(searchParams.limit || 10) / 10}
-          isNext={(searchParams.limit || 10) > allCars.length} 
-          />
+          {/* ShowMore component is available for pagination if needed */}
+          <ShowMore pageNumber={1} isNext={false} />
         </section>
-      ) : (
-        <div className="home__error-container">
-          <h2 className="text-black text-xl font-bold">
-            No Cars Found!
-          </h2>
-          <p>
-            {allCars?.message || "Try a different search!"}
-          </p>
-        </div>
-      )
-    }
-
-
-
-    </div>
-  </main>
+      </div>
+    </main>
   );
 }

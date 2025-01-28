@@ -1,24 +1,24 @@
-import { CarProps, FilterProps } from "@/types";
+import { CarParts, FilterProps } from "@/types";
 
 // Fetch from api
-export async function fetchCars( filters: FilterProps ) {
-    const {manufacturer, year, model, limit, fuel } = filters;
+// export async function fetchCars( filters: FilterProps ) {
+//     const {manufacturer, year, model, limit, fuel } = filters;
 
-    const headers = {
-        'x-rapidapi-key': '86f81cdc37msh7dd2b19115c61cap108af3jsnb7bf0f4390ac',
-        'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
-    }
-    // const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars', {headers: headers});
-    // test call
-    const response = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`, 
-    {
-        headers: headers,
-    });
+//     const headers = {
+//         'x-rapidapi-key': '86f81cdc37msh7dd2b19115c61cap108af3jsnb7bf0f4390ac',
+//         'x-rapidapi-host': 'cars-by-api-ninjas.p.rapidapi.com'
+//     }
+//     // const response = await fetch('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars', {headers: headers});
+//     // test call
+//     const response = await fetch(`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`, 
+//     {
+//         headers: headers,
+//     });
 
-    const result = await response.json();
+//     const result = await response.json();
 
-    return result;
-}
+//     return result;
+// }
 
 // Math to make the prices
 export const calculateCarRent = (city_mpg: number, year: number) => {
@@ -37,7 +37,7 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
   };
   
 
-export const generateCarImageUrl = (car: CarProps, angle?: string) => {
+export const generateCarImageUrl = (car: CarParts, angle?: string) => {
     const url = new URL("https://cdn.imagin.studio/getimage");
     const { make, model, year } = car;
     
@@ -77,3 +77,18 @@ export const updateSearchParams = (type: string, value: string) => {
   
     return newPathname;
   };
+
+// fetch
+export async function fetchCars() {
+  try {
+    const response = await fetch('https://www.freetestapi.com/api/v1/cars?limit=5');
+    const result = await response.json();
+
+  return result;
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+fetchCars();

@@ -22,7 +22,7 @@ import { CarParts, FilterProps } from "@/types";
 
 // Math to make the prices
 export const calculateCarRent = (city_mpg: number, year: number) => {
-    const basePricePerDay = 50; // Base rental price per day in dollars
+    const basePricePerDay = 10; // Base rental price per day in dollars
     const mileageFactor = 0.1; // Additional rate per mile driven
     const ageFactor = 0.05; // Additional rate per year of vehicle age
   
@@ -81,7 +81,7 @@ export const updateSearchParams = (type: string, value: string) => {
 // fetch
 export async function fetchCars() {
   try {
-    const response = await fetch('https://www.freetestapi.com/api/v1/cars?limit=5');
+    const response = await fetch('https://www.freetestapi.com/api/v1/cars?limit=30');
     const result = await response.json();
 
   return result;

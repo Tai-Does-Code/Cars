@@ -8,6 +8,9 @@ import SearchManufacturer from "./SearchManufacturer";
 import CarCard from "./CarCard";
 import CarDetails from "./CarDetails";
 import ShowMore from "./ShowMore";
+import  ExploreCars  from "../app/explore_cars/page";
+import signIn from "../app/sign_in/page";
+import signUp from "../app/sign_up/page";
 
 export{
     Hero,
@@ -20,4 +23,7 @@ export{
     CarCard,
     CarDetails,
     ShowMore,
+    ExploreCars,
+    signIn,
+    signUp,
 }

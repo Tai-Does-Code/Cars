@@ -17,20 +17,37 @@ export interface SearchManufacturerProps {
 }
 
 // Props for CarCard
-export interface CarProps {
-    city_mpg: number;
-    class: string;
-    combination_mpg: number;
-    cylinders: number;
-    displacement: number;
-    drive: string;
-    fuel_type: string;
-    highway_mpg: number;
+// export interface CarProps {
+//     city_mpg: number;
+//     class: string;
+//     combination_mpg: number;
+//     cylinders: number;
+//     displacement: number;
+//     drive: string;
+//     fuel_type: string;
+//     highway_mpg: number;
+//     make: string;
+//     model: string;
+//     transmission: string;
+//     year: number;
+// }
+
+export interface CarParts {
+    id: number;
     make: string;
     model: string;
-    transmission: string;
     year: number;
-}
+    color: string;
+    mileage: number;
+    price: number;
+    fuelType: string;
+    transmission: string;
+    engine: string;
+    horsepower: number;
+    features: string[];
+    owners: number;
+    image: string;
+  }
 
 export interface FilterProps{
     manufacturer?: string;

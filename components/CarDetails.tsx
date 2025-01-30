@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Dialog, Transition } from '@headlessui/react'
 import { CarParts } from '@/types'
 import { generateCarImageUrl } from '@/utils';
+import RentalFormButton from './RentalFormButton';
 
 interface CarDetailsProps{
     isOpen: boolean;
@@ -91,6 +92,12 @@ const CarDetails = ({ isOpen, closeModel, car }: CarDetailsProps) => {
                     ))}
                   </div>
                 </div>
+
+                {/* RentalFormButton at the bottom */}
+                <div className="w-full mt-5">
+                    <RentalFormButton />
+                  </div>
+                  
               </Dialog.Panel>
             </Transition.Child>
           </div>

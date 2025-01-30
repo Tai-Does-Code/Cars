@@ -1,7 +1,5 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/explore_cars/page": "app/explore_cars/page.js",
-  "/page": "app/page.js",
   "/sign_in/page": "app/sign_in/page.js",
-  "/sign_up/page": "app/sign_up/page.js"
+  "/explore_cars/page": "app/explore_cars/page.js",
+  "/page": "app/page.js"
 }

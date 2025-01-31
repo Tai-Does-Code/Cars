@@ -1,7 +1,5 @@
 {
+  "/page": "app/page.js",
   "/explore_cars/page": "app/explore_cars/page.js",
-  "/sign_in/page": "app/sign_in/page.js",
-  "/rent_car/page": "app/rent_car/page.js",
-  "/sign_up/page": "app/sign_up/page.js",
-  "/page": "app/page.js"
+  "/rent_car/page": "app/rent_car/page.js"
 }

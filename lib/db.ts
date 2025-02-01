@@ -1,19 +1,35 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-async function main() {
-  // ... you will write your Prisma Client queries here
-  const allUsers = await prisma.user.findMany()
-  console.log(allUsers)
-}
+const prisma = globalForPrisma.prisma || new PrismaClient();
 
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
+export const db = prisma;
+
+
+
+
+
+
+
+// import { PrismaClient } from '@prisma/client'
+
+// export const prisma = new PrismaClient()
+
+// async function main() {
+//   // ... you will write your Prisma Client queries here
+//   const allUsers = await prisma.user.findMany()
+//   console.log(allUsers)
+// }
+
+// main()
+//   .then(async () => {
+//     await prisma.$disconnect()
+//   })
+//   .catch(async (e) => {
+//     console.error(e)
+//     await prisma.$disconnect()
+//     process.exit(1)
+//   })

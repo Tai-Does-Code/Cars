@@ -861,10 +861,6 @@ video {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.text-lg{
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -920,6 +916,10 @@ video {
 .text-primary-blue{
   --tw-text-opacity: 1;
   color: rgb(43 89 255 / var(--tw-text-opacity, 1));
+}
+.text-red-500{
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 .text-white{
   --tw-text-opacity: 1;

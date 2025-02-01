@@ -11,15 +11,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/explore_cars/page": [
+    "/sign_up/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/explore_cars/page.js"
+      "static/chunks/app/sign_up/page.js"
     ],
-    "/rent_car/page": [
+    "/api/signup/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rent_car/page.js"
+      "static/chunks/app/api/signup/route.js"
     ]
   }
 }

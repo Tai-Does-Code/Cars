@@ -14,14 +14,30 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  email String @unique
-  carList List[]
+model User {
+  id       Int          @id @default(autoincrement())
+  email    String       @unique
+  password String
+  rentals  RentalForm[] // One user can have many rentals
 }
 
-model List{
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields:[userId],references:[id])
+model Car {
+  id      Int          @id @default(autoincrement())
+  make    String
+  model   String
+  rentals RentalForm[] // A car can be rented in multiple rental forms
+}
+
+model RentalForm {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  car         Car       @relation(fields: [carId], references: [id], onDelete: Cascade)
+  carId       Int
+  make        String
+  model       String
+  pickupDate  DateTime
+  dropoffDate DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }

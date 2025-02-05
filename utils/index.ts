@@ -79,16 +79,16 @@ export const updateSearchParams = (type: string, value: string) => {
   };
 
 // fetch
-export async function fetchCars() {
-  try {
-    const response = await fetch('https://www.freetestapi.com/api/v1/cars?limit=30');
-    const result = await response.json();
+// export async function fetchCars() {
+//   try {
+//     const response = await fetch('https://www.freetestapi.com/api/v1/cars?limit=30');
+//     const result = await response.json();
 
-  return result;
+//   return result;
 
-  } catch (error) {
-    console.log(error)
-  }
-}
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
-fetchCars();
+// fetchCars();

@@ -1,34 +1,33 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { Hero, CustomFilter, CarCard, SearchBar, ShowMore } from "@/components";
-import { fetchCars } from "@/utils";
+import { fetchCars } from "@/utils/fetchCars";
 import { fuels, yearsOfProduction } from "@/constants";
 
 const CarCatalogue = () => {
   const [cars, setCars] = useState([]); // Cars data state
-  const [isLoading, setIsLoading] = useState(true); // Loading state
   const [error, setError] = useState<string | null>(null); // Error state
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const getCars = async () => {
       try {
-        const data = await fetchCars(); // Fetch car data from the API
-        setCars(data || []); // Update state with the fetched cars
-        setIsLoading(false);
-      } catch (err) {
+        const data = await fetchCars();
+        setCars(data);
+      } catch {
         setError("Failed to fetch car data.");
-        setIsLoading(false);
+      } finally {
+        setLoading(false);
       }
     };
 
     getCars();
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="mt-12 padding-x padding-y max-width text-center">
-        <h1 className="text-4xl font-extrabold">Loading Cars...</h1>
+        <h1 className="text-4xl font-extrabold">Loading...</h1>
       </div>
     );
   }
@@ -37,7 +36,7 @@ const CarCatalogue = () => {
     return (
       <div className="mt-12 padding-x padding-y max-width text-center">
         <h1 className="text-4xl font-extrabold">No Cars Found!</h1>
-        <p>{error || "Try refreshing the page or check the API."}</p>
+        <p>{error || "Try refreshing the page or check the data source."}</p>
       </div>
     );
   }

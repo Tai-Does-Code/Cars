@@ -11,6 +11,7 @@ import ShowMore from "./ShowMore";
 import  ExploreCars  from "../app/explore_cars/page";
 import signIn from "../app/sign_in/page";
 import signUp from "../app/sign_up/page";
+import { fetchCars } from "@/utils/fetchCars";
 
 export{
     Hero,
@@ -26,4 +27,5 @@ export{
     ExploreCars,
     signIn,
     signUp,
+    fetchCars,
 }

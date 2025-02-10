@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { CarParts } from '@/types';
 import CarCard from '../../components/CarCard';
-import { fetchCars } from '@/utils';
+import { fetchCars } from '@/utils/fetchCars';
 
 const ExploreCars = () => {
   const [cars, setCars] = useState([]); 

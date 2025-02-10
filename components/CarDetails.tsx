@@ -77,7 +77,7 @@ const CarDetails = ({ isOpen, closeModel, car }: CarDetailsProps) => {
                 </div>
 
                 <div className="w-full mt-5">
-                  <RentalFormButton />
+                  <RentalFormButton carId={car.id} />
                 </div>
               </Dialog.Panel>
             </Transition.Child>

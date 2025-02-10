@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { fetchCars } from "@/utils/fetchCars";
-import CarCard from "../../components/CarCard";
+import React, { useEffect, useState } from 'react';
+import { CarParts } from '@/types';
+import CarCard from '../../components/CarCard';
+import { fetchCars } from '@/utils/fetchCars';
+
 
 const ExploreCars = () => {
   const [cars, setCars] = useState([]);

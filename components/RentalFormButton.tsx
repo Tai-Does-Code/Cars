@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 const RentalFormButton = ({ carId }: { carId: string }) => {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/rent_car/${carId}`);
+    router.push(`/rent_car`);
   };
 
   return (
